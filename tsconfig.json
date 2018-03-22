@@ -3,7 +3,7 @@
         "target"            : "ES6",
         "module"            : "commonjs",       // Use system.js (Recommend)
         // "module"            : "amd",       // Use require.js
-        "outDir"            : "mjs",
+        "outDir"            : "shopping-online/mjs",
         "watch"             : true,
         "removeComments"    : false
     },
@@ -11,6 +11,9 @@
         "css",
         "fonts",
         "js",
-        "mjs"
+        "shopping-online/mjs",
+        "ts",
+        "mjs",
+        "characters"
     ]
 }
