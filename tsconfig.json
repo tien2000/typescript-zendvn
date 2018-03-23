@@ -12,8 +12,9 @@
         "fonts",
         "js",
         "shopping-online/mjs",
+        "shopping-online/css",
+        "shopping-online/characters",
         "ts",
         "mjs",
-        "characters"
     ]
 }
