@@ -4,11 +4,11 @@ export class ProductRepository {
     private products        : Product[] = [];
 
     constructor() {
-        this.addItem(new Product(1, "Bulbasaur", "../characters/bulbasaur.png", "lorem10", 10, true));        
-        this.addItem(new Product(2, "Charmander", "../characters/charmander.png", "lorem10", 20, true));
-        this.addItem(new Product(3, "Ivysaur", "../characters/ivysaur.png", "lorem10", 30, true));
-        this.addItem(new Product(4, "Squirtle", "../characters/squirtle.png", "lorem10", 40, false));
-        this.addItem(new Product(5, "Venusaur", "../characters/venusaur.png", "lorem10", 50, true));
+        this.addItem(new Product(1, "Bulbasaur", "../characters/bulbasaur.png", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ullam.", 10, true));        
+        this.addItem(new Product(2, "Charmander", "../characters/charmander.png", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ullam.", 20, true));
+        this.addItem(new Product(3, "Ivysaur", "../characters/ivysaur.png", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ullam.", 30, true));
+        this.addItem(new Product(4, "Squirtle", "../characters/squirtle.png", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ullam.", 40, false));
+        this.addItem(new Product(5, "Venusaur", "../characters/venusaur.png", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, ullam.", 50, true));
     }
 
     public addItem(product : Product){
@@ -53,14 +53,26 @@ export class ProductRepository {
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">${currentItem.name}</h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, natus!</p>
-                                        <input type="number" name="quantity-product-1" id="" value="1" min="1">
-                                        <a href="#" data-product="1" class="price">$${currentItem.price}</a>
+                                        <p>${currentItem.sumary}</p>
+                                        ${this.shoBuyItemInHTML(currentItem)}
                                     </div>
                                 </div>`;                
             }
         } else {
             xhtmlResult = "Empty product";
+        }
+
+        return xhtmlResult;
+    }
+
+    private shoBuyItemInHTML(product : Product) : string{
+        let xhtmlResult : string = "";
+
+        if (product.canBuy == true) {
+            xhtmlResult = `<input type="number" name="quantity-product-1" id="" value="1" min="1">
+                            <a href="#" data-product="1" class="price">$${product.price}</a>`;
+        } else {
+            xhtmlResult = `<span class="price">$${product.price}</span>`;
         }
 
         return xhtmlResult;
