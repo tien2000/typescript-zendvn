@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Helpers {
-    static toCurrency(value, currencyUnit, position = "left") {
-        if (position == "left") {
-            return currencyUnit + " " + value;
+    static toCurrency(val = 0, curUnit = "", pos = "left") {
+        if (pos == "left") {
+            return curUnit + " " + val;
         }
-        else if (position == "right") {
-            return value + " " + currencyUnit;
+        else if (pos == "right") {
+            return val + " " + curUnit;
         }
     }
 }

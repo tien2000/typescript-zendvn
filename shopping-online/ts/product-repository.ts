@@ -1,4 +1,5 @@
 import { Product } from './product.js';
+import { Helpers } from './libs/helpers.js';
 
 export class ProductRepository {
     private products        : Product[] = [];
@@ -59,7 +60,7 @@ export class ProductRepository {
                                 </div>`;                
             }
         } else {
-            xhtmlResult = "Empty product";
+            xhtmlResult = "Empty Product in your cart";
         }
 
         return xhtmlResult;
@@ -70,9 +71,9 @@ export class ProductRepository {
 
         if (product.canBuy == true) {
             xhtmlResult = `<input type="number" name="quantity-product-1" id="" value="1" min="1">
-                            <a href="#" data-product="1" class="price">$${product.price}</a>`;
+                            <a href="#" data-product="1" class="price">${Helpers.toCurrency(product.price, "USD", "right")}</a>`;
         } else {
-            xhtmlResult = `<span class="price">$${product.price}</span>`;
+            xhtmlResult = `<span class="price">${Helpers.toCurrency(product.price, "USD", "right")}</span>`;
         }
 
         return xhtmlResult;

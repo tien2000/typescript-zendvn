@@ -1,11 +1,9 @@
-export class Helpers {
-	
-	public static toCurrency(value: number, currencyUnit: string, position: string = "left" ) : string {
-		if(position == "left"){
-			return currencyUnit + " " + value;
-		}else if(position == "right"){
-			return value + " " + currencyUnit;
+export class Helpers{
+	public static toCurrency(val : number = 0, curUnit : string = "", pos : string = "left") : string{
+		if (pos == "left") {
+			return curUnit + " " + val;
+		} else if(pos == "right") {
+			return val + " " + curUnit;
 		}
-		
 	}
 }

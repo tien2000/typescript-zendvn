@@ -7,6 +7,6 @@ import { Product } from './product.js';
 let productRepo = new ProductRepository();
 let products: Product[] = productRepo.getItems();
 
-console.log(productRepo.showItemsInHTML());
+//console.log(productRepo.showItemsInHTML());
 
 $("#list-product").html(productRepo.showItemsInHTML());

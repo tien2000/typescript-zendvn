@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_js_1 = require("./product.js");
+const helpers_js_1 = require("./libs/helpers.js");
 class ProductRepository {
     constructor() {
         this.products = [];
@@ -52,7 +53,7 @@ class ProductRepository {
             }
         }
         else {
-            xhtmlResult = "Empty product";
+            xhtmlResult = "Empty Product in your cart";
         }
         return xhtmlResult;
     }
@@ -60,10 +61,10 @@ class ProductRepository {
         let xhtmlResult = "";
         if (product.canBuy == true) {
             xhtmlResult = `<input type="number" name="quantity-product-1" id="" value="1" min="1">
-                            <a href="#" data-product="1" class="price">$${product.price}</a>`;
+                            <a href="#" data-product="1" class="price">${helpers_js_1.Helpers.toCurrency(product.price, "USD", "right")}</a>`;
         }
         else {
-            xhtmlResult = `<span class="price">$${product.price}</span>`;
+            xhtmlResult = `<span class="price">${helpers_js_1.Helpers.toCurrency(product.price, "USD", "right")}</span>`;
         }
         return xhtmlResult;
     }
