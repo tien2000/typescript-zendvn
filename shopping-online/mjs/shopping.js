@@ -16,6 +16,9 @@ var T_NOTIFICATION;
 (function (T_NOTIFICATION) {
     T_NOTIFICATION.NOTI_READY_TO_BUY = "Ready to buy product";
     T_NOTIFICATION.NOTI_GEATER_THAN_ONE = "Quatity must equal or greater than 1";
+    T_NOTIFICATION.NOTI_ADDED = "Add Successful!";
+    T_NOTIFICATION.NOTI_UPDATED = "Update Successful!";
+    T_NOTIFICATION.NOTI_DELETE = "Delete Successful!";
 })(T_NOTIFICATION || (T_NOTIFICATION = {}));
 let productRepo = new product_repository_js_1.ProductRepository();
 let products = productRepo.getItems();
@@ -72,16 +75,19 @@ $(document).ready(function () {
         let id = $(this).data("product");
         let quantity = parseInt($("input[name='quantity-product-" + id + "']").val());
         addProduct(id, quantity);
+        showNotification(T_NOTIFICATION.NOTI_ADDED);
     });
     // Update Product
     $(document).on("click", "a#update-cart-item", function () {
         let id = $(this).data("product");
         let quantity = parseInt($("input[name='cart-item-quantity-" + id + "']").val());
         updateProduct(id, quantity);
+        showNotification(T_NOTIFICATION.NOTI_UPDATED);
     });
     // Delete Product
     $(document).on("click", "a#delete-cart-item", function () {
         let id = $(this).data("product");
         removeProduct(id);
+        showNotification(T_NOTIFICATION.NOTI_DELETE);
     });
 });

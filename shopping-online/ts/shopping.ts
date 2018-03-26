@@ -16,6 +16,9 @@ namespace T_ELEMENT{
 namespace T_NOTIFICATION{
     export const NOTI_READY_TO_BUY      : string    = "Ready to buy product";
     export const NOTI_GEATER_THAN_ONE   : string    = "Quatity must equal or greater than 1";
+    export const NOTI_ADDED             : string    = "Add Successful!";
+    export const NOTI_UPDATED           : string    = "Update Successful!";
+    export const NOTI_DELETE            : string    = "Delete Successful!";
 }
 
 let productRepo = new ProductRepository();
@@ -82,6 +85,7 @@ $(document).ready(function(){
         let id : number = $(this).data("product");
         let quantity : number = parseInt($("input[name='quantity-product-" + id +"']").val());
         addProduct(id, quantity);
+        showNotification(T_NOTIFICATION.NOTI_ADDED);
     })
 
     // Update Product
@@ -89,11 +93,13 @@ $(document).ready(function(){
         let id : number = $(this).data("product");
         let quantity : number = parseInt($("input[name='cart-item-quantity-" + id +"']").val());
         updateProduct(id, quantity);
+        showNotification(T_NOTIFICATION.NOTI_UPDATED);
     });
 
     // Delete Product
     $(document).on("click", "a#delete-cart-item", function(){
         let id : number = $(this).data("product");
         removeProduct(id);
+        showNotification(T_NOTIFICATION.NOTI_DELETE);
     });
 });
