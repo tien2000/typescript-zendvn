@@ -1,18 +1,48 @@
-import { Product } from './product';
+import { Product } from './product.js';
+import { Helpers } from './libs/helpers.js';
 
 export class CartItem {
-    private product         : Product;
-    private quantity        : number;
+    private _product         : Product;
+    private _quantity        : number;
 
     constructor(product : Product, quantity : number = 1) {
-        
+        this._product    = product;
+        this._quantity   = quantity;
     }
 
-    public showCartItemInHTML() : string{
-        return "showCartItemInHTML";
+    public showCartItemInHTML(index : number) : string{
+        return `<tr>
+                    <td>${index}</td>
+                    <td>${this.product.name}</td>
+                    <td>${Helpers.toCurrency(this.product.price, "USD", "right")}</td>
+                    <td>
+                        <input type="number" name="quantity-product-${this.product.id}" id="" value="${this.quantity}" min="1">
+                    </td>
+                    <td><strong>${Helpers.toCurrency(this.getSubtotal(), "USD" , "right")}</strong></td>
+                    <td>
+                        <a id="update-cart-item" class="label label-info" href="#" data-product="1">Update</a>
+                        <a id="delete-cart-item" class="label label-danger" href="#" data-product="1">Delete</a>
+                    </td>
+                </tr>`;
     }
 
     public getSubtotal() : number{
-        return 123;
+        return this.product.price * this.quantity;
+    }
+    
+    public get product() : Product {
+        return this._product;
+    }
+        
+    public set product(val : Product) {
+        this._product = val;
+    }
+        
+    public get quantity() : number {
+        return this._quantity;
+    }
+        
+    public set quantity(val : number) {
+        this._quantity = val;
     }
 }

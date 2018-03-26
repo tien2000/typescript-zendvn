@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Validate {
-    static isNumber(value) {
-        return !isNaN(parseFloat(value)) && isFinite(value);
+    static isNumber(val) {
+        return !isNaN(parseFloat(val)) && isFinite(val);
     }
-    static checkQuantity(value) {
-        if (value < 1 || Validate.isNumber(value) == false) {
+    static checkQuantity(val) {
+        if (val < 1 || Validate.isNumber(val) == false) {
             return false;
         }
         return true;

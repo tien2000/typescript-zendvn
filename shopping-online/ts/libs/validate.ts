@@ -1,13 +1,13 @@
+import { Product } from '../product.js';
 export class Validate {
-	public static isNumber(value : any) : boolean {
-		return !isNaN(parseFloat(value)) && isFinite(value);
-	}
+	public static isNumber(val : any) : boolean{
+		return !isNaN(parseFloat(val))  && isFinite(val);
+	}	
 
-	public static checkQuantity(value: any) : boolean {
-		if(value < 1 || Validate.isNumber(value) == false ) {
+	public static checkQuantity(val : any) : boolean {
+		if (val < 1 || Validate.isNumber(val) == false) {        
 			return false;
 		}
-
 		return true;
 	}
 }

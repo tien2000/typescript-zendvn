@@ -70,8 +70,8 @@ export class ProductRepository {
         let xhtmlResult : string = "";
 
         if (product.canBuy == true) {
-            xhtmlResult = `<input type="number" name="quantity-product-1" id="" value="1" min="1">
-                            <a href="#" data-product="1" class="price">${Helpers.toCurrency(product.price, "USD", "right")}</a>`;
+            xhtmlResult = `<input type="number" name="quantity-product-${product.id}" id="" value="1" min="1">
+                            <a href="#" data-product="${product.id}" class="price">${Helpers.toCurrency(product.price, "USD", "right")}</a>`;
         } else {
             xhtmlResult = `<span class="price">${Helpers.toCurrency(product.price, "USD", "right")}</span>`;
         }

@@ -45,14 +45,31 @@
 								</thead>
 								<tbody id="my-cart-body">
 									<!-- CART BODY -->
+									<tr>
+										<td>1</td>
+										<td>Bulbasaur</td>
+										<td>$10</td>
+										<td>
+											<input type="number" name="quantity-product-1" id="" value="1" min="1">
+										</td>
+										<td><strong>$10</strong></td>
+										<td>
+											<a id="update-cart-item" class="label label-info" href="#" data-product="1">Update</a>
+											<a id="delete-cart-item" class="label label-danger" href="#" data-product="1">Delete</a>
+										</td>
+									</tr>
 								</tbody>
 								<tfoot id="my-cart-footer">
 									<!-- CART FOOTER -->
+									<tr>
+										<td colspan="4">There are <strong>5</strong> items in your cart.</td>
+										<td colspan="2" class="total-price text-left">$100.00</td>
+									</tr>
 								</tfoot>
 							</table>
 						</div>
 					</div>
-					<div class="alert alert-success" role="alert" id="mnotification">Updated <b>ivysaur</b></div>
+					<div class="alert alert-success" role="alert" id="tNotification">Updated <b>ivysaur</b></div>
 				</div>
 			</div>
 		</div>
