@@ -16,12 +16,12 @@ export class CartItem {
                     <td>${this.product.name}</td>
                     <td>${Helpers.toCurrency(this.product.price, "USD", "right")}</td>
                     <td>
-                        <input type="number" name="quantity-product-${this.product.id}" id="" value="${this.quantity}" min="1">
+                        <input type="number" name="cart-item-quantity-${this.product.id}" id="" value="${this.quantity}" min="1">
                     </td>
                     <td><strong>${Helpers.toCurrency(this.getSubtotal(), "USD" , "right")}</strong></td>
                     <td>
-                        <a id="update-cart-item" class="label label-info" href="#" data-product="1">Update</a>
-                        <a id="delete-cart-item" class="label label-danger" href="#" data-product="1">Delete</a>
+                        <a id="update-cart-item" class="label label-info" href="#" data-product="${this.product.id}">Update</a>
+                        <a id="delete-cart-item" class="label label-danger" href="#" data-product="${this.product.id}">Delete</a>
                     </td>
                 </tr>`;
     }

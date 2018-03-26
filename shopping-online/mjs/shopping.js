@@ -34,6 +34,31 @@ function showCart() {
     $(T_ELEMENT.ELM_CART_BODY).html(cartObj.showCartBodyInHTML());
     $(T_ELEMENT.ELM_CART_FOOTER).html(cartObj.showCartFooterInHTML());
 }
+function addProduct(id, quantity) {
+    if (validate_js_1.Validate.checkQuantity(quantity)) {
+        let product = productRepo.getItemsID(id);
+        cartObj.addProduct(product, quantity);
+        showCart();
+    }
+    else {
+        showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
+    }
+}
+function updateProduct(id, quantity) {
+    if (validate_js_1.Validate.checkQuantity(quantity)) {
+        let product = productRepo.getItemsID(id);
+        cartObj.updateProduct(product, quantity);
+        showCart();
+    }
+    else {
+        showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
+    }
+}
+function removeProduct(id) {
+    let product = productRepo.getItemsID(id);
+    cartObj.removeProduct(product);
+    showCart();
+}
 $(document).ready(function () {
     // Show Product List
     showListProduct();
@@ -41,17 +66,22 @@ $(document).ready(function () {
     showCart();
     // Update Announcement
     showNotification(T_NOTIFICATION.NOTI_READY_TO_BUY);
+    // Buy Product
     $("a.price").click(function () {
         // console.log('abc');
         let id = $(this).data("product");
         let quantity = parseInt($("input[name='quantity-product-" + id + "']").val());
-        if (validate_js_1.Validate.checkQuantity(quantity)) {
-            let product = productRepo.getItemsID(id);
-            cartObj.addProduct(product, quantity);
-            showCart();
-        }
-        else {
-            showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
-        }
+        addProduct(id, quantity);
+    });
+    // Update Product
+    $(document).on("click", "a#update-cart-item", function () {
+        let id = $(this).data("product");
+        let quantity = parseInt($("input[name='cart-item-quantity-" + id + "']").val());
+        updateProduct(id, quantity);
+    });
+    // Delete Product
+    $(document).on("click", "a#delete-cart-item", function () {
+        let id = $(this).data("product");
+        removeProduct(id);
     });
 });

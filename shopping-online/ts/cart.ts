@@ -21,6 +21,25 @@ export class Cart {
         // console.log(this.cartItems);
     }
 
+    public updateProduct(product : Product, quantity : number = 1) : void{
+        let pos : number = this.getProductPos(product);
+        if (pos > -1) {
+            // Công thức toán hack não @@
+            this.totalQuantity = this.totalQuantity - this.cartItems[pos].quantity + quantity;
+            this.totalPrice = this.totalPrice - product.price * (this.cartItems[pos].quantity - quantity);
+            this.cartItems[pos].quantity = quantity;
+        }
+    }
+
+    public removeProduct(product : Product) : void{
+        let pos : number = this.getProductPos(product);
+        if (pos > -1) {
+            this.totalQuantity = this.totalQuantity - this.cartItems[pos].quantity;
+            this.totalPrice = this.totalPrice - product.price * this.cartItems[pos].quantity;
+            this.cartItems.splice(pos, 1);
+        }
+    }
+
     private getProductPos(product : Product) : number{
         let total : number = this.cartItems.length;
         for (let i : number = 0; i < total; i++) {
@@ -29,14 +48,6 @@ export class Cart {
             }            
         }
         return -1;
-    }
-
-    public updateProduct(product : Product, quantity : number = 1) : void{
-
-    }
-
-    public removeProduct(product : Product) : void{
-
     }
 
     // public getTotalQuantity() : number{

@@ -20,6 +20,23 @@ class Cart {
         this.totalPrice += product.price * quantity;
         // console.log(this.cartItems);
     }
+    updateProduct(product, quantity = 1) {
+        let pos = this.getProductPos(product);
+        if (pos > -1) {
+            // Công thức toán hack não @@
+            this.totalQuantity = this.totalQuantity - this.cartItems[pos].quantity + quantity;
+            this.totalPrice = this.totalPrice - product.price * (this.cartItems[pos].quantity - quantity);
+            this.cartItems[pos].quantity = quantity;
+        }
+    }
+    removeProduct(product) {
+        let pos = this.getProductPos(product);
+        if (pos > -1) {
+            this.totalQuantity = this.totalQuantity - this.cartItems[pos].quantity;
+            this.totalPrice = this.totalPrice - product.price * this.cartItems[pos].quantity;
+            this.cartItems.splice(pos, 1);
+        }
+    }
     getProductPos(product) {
         let total = this.cartItems.length;
         for (let i = 0; i < total; i++) {
@@ -28,10 +45,6 @@ class Cart {
             }
         }
         return -1;
-    }
-    updateProduct(product, quantity = 1) {
-    }
-    removeProduct(product) {
     }
     // public getTotalQuantity() : number{
     //     let total : number = 0;

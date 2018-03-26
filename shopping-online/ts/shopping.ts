@@ -40,6 +40,32 @@ function showCart() {
     $(T_ELEMENT.ELM_CART_FOOTER).html(cartObj.showCartFooterInHTML());
 }
 
+function addProduct(id : number, quantity : number) : void{
+    if (Validate.checkQuantity(quantity)) {
+        let product : Product = productRepo.getItemsID(id);
+        cartObj.addProduct(product, quantity);
+        showCart();
+    } else{
+        showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
+    }
+}
+
+function updateProduct(id : number, quantity : number) : void{
+    if (Validate.checkQuantity(quantity)) {
+        let product : Product = productRepo.getItemsID(id);
+        cartObj.updateProduct(product, quantity);
+        showCart();
+    } else{
+        showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
+    }
+}
+
+function removeProduct(id : number) : void{
+    let product : Product = productRepo.getItemsID(id);
+        cartObj.removeProduct(product);
+        showCart();
+}
+
 $(document).ready(function(){
     // Show Product List
     showListProduct();
@@ -50,18 +76,24 @@ $(document).ready(function(){
     // Update Announcement
     showNotification(T_NOTIFICATION.NOTI_READY_TO_BUY);
 
+    // Buy Product
     $("a.price").click(function(){
         // console.log('abc');
         let id : number = $(this).data("product");
         let quantity : number = parseInt($("input[name='quantity-product-" + id +"']").val());
-
-        if (Validate.checkQuantity(quantity)) {
-            let product : Product = productRepo.getItemsID(id);
-            cartObj.addProduct(product, quantity);
-            showCart();
-        } else{
-            showNotification(T_NOTIFICATION.NOTI_GEATER_THAN_ONE);
-        }
-
+        addProduct(id, quantity);
     })
+
+    // Update Product
+    $(document).on("click", "a#update-cart-item", function(){
+        let id : number = $(this).data("product");
+        let quantity : number = parseInt($("input[name='cart-item-quantity-" + id +"']").val());
+        updateProduct(id, quantity);
+    });
+
+    // Delete Product
+    $(document).on("click", "a#delete-cart-item", function(){
+        let id : number = $(this).data("product");
+        removeProduct(id);
+    });
 });
